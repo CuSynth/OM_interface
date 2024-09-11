@@ -1,21 +1,44 @@
-from PyQt6.QtWidgets import QApplication, QWidget
-
-# Only needed for access to command line arguments
 import sys
 
+from PyQt6.QtWidgets import (
+    QApplication, QDialog, QMainWindow, QMessageBox
+)
+# from PyQt6.uic import loadUi
+
+from GUI.generated.mainwindow_ui import Ui_MainWindow
+
+class Window(QMainWindow, Ui_MainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)
+        self.connectSignalsSlots()
+
+    def connectSignalsSlots(self):
+        self.action_About.triggered.connect(self.about)
+
+    def findAndReplace(self):
+        # dialog = FindReplaceDialog(self)
+        # dialog.exec()
+        pass
+
+    def about(self):
+        QMessageBox.about(
+            self,
+            "About Sample Editor",
+            "<p>A sample text editor app built with:</p>"
+            "<p>- PyQt</p>"
+            "<p>- Qt Designer</p>"
+            "<p>- Python</p>"
+            "<p>- VSCode</p>",
+        )
+
+# class FindReplaceDialog(QDialog):
+#     def __init__(self, parent=None):
+#         super().__init__(parent)
+#         loadUi("ui/find_replace.ui", self)
+
 if __name__ == "__main__":
-    # You need one (and only one) QApplication instance per application.
-    # Pass in sys.argv to allow command line arguments for your app.
-    # If you know you won't use command line arguments QApplication([]) works too.
     app = QApplication(sys.argv)
-
-    # Create a Qt widget, which will be our window.
-    window = QWidget()
-    window.show()  # IMPORTANT!!!!! Windows are hidden by default.
-
-    # Start the event loop.
-    app.exec()
-
-
-    # Your application won't reach here until you exit and the event
-    # loop has stopped.
+    win = Window()
+    win.show()
+    sys.exit(app.exec())
