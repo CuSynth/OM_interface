@@ -29,11 +29,12 @@ class Window(QMainWindow):
         QMessageBox.about(
             self,
             "About OM communication",
-            "<p>An OM communication app built with:</p>"
-            "<p>- PyQt</p>"
-            "<p>- Qt Designer</p>"
-            "<p>- Python</p>"
-            "<p>- VSCode</p>",
+            "<p>An \"OM communication\" is an app made to control Orientation Module.</p>"
+            "<p>It allows you to:<ul>"
+            "<li>get/set sensors and module parameters;</li>"
+            "<li>get Horizon (HS) and Sun (SS) sensor images and data;</li>"
+            "<li>get Gyro, Accel and Mag data (GAM);</li>"
+            "</ul></p>"
         )   
 
 if __name__ == "__main__":
